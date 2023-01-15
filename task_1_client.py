@@ -10,7 +10,7 @@ import socket
 
 print('--- Task 1. TCP Client ---')
 
-address = ('localhost', 6000)
+address = ('localhost', 60000)
 max_size = 1024
 
 print('Client has been started at', datetime.now())
@@ -18,12 +18,6 @@ client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client.connect(address)
 client.sendall(b'Hey, Server!'.upper())
 data = client.recv(max_size)
-print('At', datetime.now(), 'Server answered:', data)
-
-client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-client.connect(address)
-client.sendall(b'I want to get info, Server!'.upper())
-data = client.recv(max_size)
-print('At', datetime.now(), 'Server answered:', data)
+print('Server at', datetime.now(), 'answered', data)
 
 client.close()

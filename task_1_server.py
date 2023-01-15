@@ -9,7 +9,7 @@ import socket
 
 print('--- Task 1. TCP Server ---')
 
-address = ('localhost', 6000)
+address = ('localhost', 60000)
 max_size = 1024
 
 print('Server has been started at', datetime.now())
@@ -21,18 +21,9 @@ server.listen(5)
 conn, addr = server.accept()
 print('Connected with:', addr)
 data = conn.recv(max_size)
-print(f'Client {addr} said:', data)
-print('At', datetime.now(), conn, 'said', data)
-conn.sendall(b'Do you want to talk with me?'.upper())
-
-print('====================')
-
-conn, addr = server.accept()
-print('Talking with:', addr)
-data = conn.recv(max_size)
 print(f'Client {addr} at', datetime.now(), 'said:', data)
-conn.sendall(b'How can I help you?'.upper())
-
+# print('At', datetime.now(), conn, 'said', data)
+conn.sendall(b'Do you want to talk with me?'.upper())
 
 conn.close()
 server.close()
