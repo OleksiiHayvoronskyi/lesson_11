@@ -36,5 +36,3 @@ while True:
             conn.sendall(b'The number of sent words')
             print('You sent', len(data.split()), 'words')
             print('====================')
-
-

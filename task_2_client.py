@@ -7,16 +7,17 @@ import socket
 
 # КЛІЄНТ
 
-print('--- Task 2. TCP Client ---')
+print('--- Task 2. ChatBot ---')
 
 
 address = ('localhost', 53132)
 max_size = 1024
 
-print('Client has been started at', datetime.now(), '\n')
+print('Welcome to the ChatBox')
+print('Initialising...\n')
 name = input(str('Enter your name: '))
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-print('Trying to connect to', address)
+print('Trying to connect to', address, '\n')
 client.connect(address)
 
 client.sendall(name.encode())
@@ -36,23 +37,3 @@ while True:
         print("\n")
         break
     client.send(message.encode())
-
-
-
-
-# print('Client has been started at', datetime.now(), '\n')
-# client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-# client.connect(address)
-# client.sendall(b'Hey, Server!'.upper())
-# data = client.recv(max_size)
-# print('At', datetime.now(), 'Server answered:', data)
-#
-# print('====================')
-#
-# client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-# client.connect(address)
-# client.sendall(b'I want to get info, Server!'.upper())
-# data = client.recv(max_size)
-# print('At', datetime.now(), 'Server answered:', data)
-
-client.close()
