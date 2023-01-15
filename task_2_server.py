@@ -16,18 +16,18 @@ print('Server is waiting on a client...\n')
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server.bind(address)
 server.listen(5)
+
 while True:
     conn, addr = server.accept()
     with conn:
         print('Connected with:', addr)
-        data = conn.recv(max_size)
+        data = str(conn.recv(max_size), encoding='utf_8')
         if not data:
             break
         print(f'Client {addr} said:', data)
-        # print('At', datetime.now(), conn, 'said', data)
+        # Повідомлення сервера.
+        server_message = data
         print('====================')
-        conn.sendall(b'Do you want to ask anything?'.upper())
+        conn.sendall(server_message.encode())
+        conn.close()
 
-
-# conn.close()
-# server.close()

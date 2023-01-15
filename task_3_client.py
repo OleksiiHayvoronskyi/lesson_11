@@ -18,7 +18,7 @@ client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client.connect(address)
 client.sendall(b'Count my words!'.upper())
 data = client.recv(max_size)
-print('At', datetime.now(), 'Server answered:', data)
+print('At', datetime.now(), 'Server answered:', data.decode('utf-8'))
 
 print('====================')
 
@@ -26,4 +26,6 @@ client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client.connect(address)
 client.sendall(b'How many words did I send you?'.upper())
 data = client.recv(max_size)
-print('At', datetime.now(), 'Server answered:', data)
+print('At', datetime.now(), 'Server answered:', data.decode('utf-8'))
+
+client.close()

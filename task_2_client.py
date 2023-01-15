@@ -28,4 +28,4 @@ client.sendall(b'I want to get info, Server!'.upper())
 data = client.recv(max_size)
 print('At', datetime.now(), 'Server answered:', data)
 
-#client.close()
+client.close()

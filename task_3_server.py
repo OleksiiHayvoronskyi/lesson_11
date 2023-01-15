@@ -18,21 +18,23 @@ print('Server is waiting on a client...\n')
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server.bind(address)
 server.listen(5)
-while True:
-    conn, addr = server.accept()
-    with conn:
-        print('Connected with:', addr)
-        data = conn.recv(max_size)
-        if not data:
-            break
-        print(f'Client {addr} said:', data)
-        #print(conn.sendall(b'I counted the number of written words'))
-        #print('You said', len(data.split()), 'words')
-        # Рахує кількість слів у рядку.
-        #print('You said', len(data.split()),'words')
-        # print('At', datetime.now(), conn, 'said', data)
 
-        conn.sendall(b'I counted the number of written words')
-        print('You said', len(data.split()), 'words')
-        print('====================')
+while True:
+    try:
+        conn, addr = server.accept()
+    except KeyboardInterrupt:
+        server.close()
+        break
+    else:
+        with conn:
+            print('Connected with:', addr)
+            data = conn.recv(max_size)
+            if not data:
+                break
+            print(f'Client {addr} at', datetime.now(), 'said:', data)
+
+            conn.sendall(b'The number of sent words')
+            print('You sent', len(data.split()), 'words')
+            print('====================')
+
 
